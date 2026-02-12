@@ -6,17 +6,19 @@ public class UI {
     private Scanner scanner = new Scanner(System.in);
 
     public void Start() {
-        showMenu();
-        int choice = scanner.nextInt();
-        scanner.nextLine();
+        while (true) {
+            showMenu();
+            int choice = scanner.nextInt();
+            scanner.nextLine();
 
-        switch (choice) {
-            case 1 -> addCompany();
-            case 2 -> showCompanies();
-            case 3 -> updateStatus();
-            case 4 -> showOfferRate();
-            case 0 -> exit();
-            default -> System.out.println("無効な入力です");
+            switch (choice) {
+                case 1 -> addCompany();
+                case 2 -> showCompanies();
+                case 3 -> updateStatus();
+                case 4 -> showOfferRate();
+                case 0 -> exit();
+                default -> System.out.println("無効な入力です");
+            }
         }
     }
 
@@ -32,6 +34,7 @@ public class UI {
         System.out.print("企業名: ");
         String name = scanner.nextLine();
         service.addCompany(name);
+
     }
 
     private void showCompanies() {

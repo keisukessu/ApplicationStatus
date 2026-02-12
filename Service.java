@@ -4,8 +4,13 @@ import java.util.List;
 public class Service {
     private List<Company> companies = new ArrayList<>();
 
+    public Service() {
+        companies = FileService.load(); // 起動時読み込み
+    }
+
     public void addCompany(String name) {
         companies.add(new Company(name, Status.ENTRY));
+        save(); // 保存してから終了
     }
 
     public List<Company> getCompanies() {
@@ -15,6 +20,7 @@ public class Service {
     public void updateStatus(int index, Status status) {
         if (0 <= index && index < getCompanies().size()) {
             companies.get(index).setStatus(status);
+            save();
         }
     }
 
@@ -24,11 +30,16 @@ public class Service {
         } else {
             int offerCount = 0;
             for (Company c : companies) {
-                if (c.getStatus() == Status.OFFER) {
+                if (c.getStatus().equals(Status.OFFER)) {
                     offerCount++;
                 }
             }
-            return (offerCount / companies.size()) * 100;
+            return (double) offerCount / companies.size() * 100;
         }
     }
+
+    public void save() {
+        FileService.save(companies); // 終了時保存
+    }
+
 }

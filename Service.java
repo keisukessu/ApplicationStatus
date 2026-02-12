@@ -18,7 +18,7 @@ public class Service {
         }
     }
 
-    public double culculateOfferRates() {
+    public double calculateOfferRate() {
         if (companies.isEmpty()) {
             return 0;
         } else {

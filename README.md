@@ -10,7 +10,7 @@
 - **一覧表示** - 登録済みの全企業とステータスを一覧表示する
 - **ステータス変更** - 企業の応募ステータスを更新する
 - **内定率表示** - 全企業に対する内定（OFFER）の割合を表示する
-- **データ永続化** - 企業データはCSVファイルに自動保存される
+- **データ保存** - 企業データはCSVファイルに自動保存される
 
 ## ステータス一覧
 
@@ -25,13 +25,13 @@
 
 ```
 ApplicationStatus/
-├── Main.java        # エントリーポイント
+├── Main.java        # メイン
 ├── UI.java          # ユーザーインターフェース（メニュー表示・入力処理）
-├── Service.java     # ビジネスロジック（追加・更新・内定率計算）
-├── FileService.java # データ永続化（CSV読み込み・保存）
-├── Company.java     # 企業モデルクラス
+├── Service.java     # ロジック（追加・更新・内定率計算）
+├── FileService.java # データ処理（CSV読み込み・保存）
+├── Company.java     # 企業クラス
 ├── Status.java      # 応募ステータスのenum
-└── companies.csv    # 企業データの保存先
+└── companies.csv    # データの保存先
 ```
 
 ## 実行方法
@@ -39,8 +39,10 @@ ApplicationStatus/
 ```bash
 # コンパイル
 javac Main.java
+#文字化けする場合代わりに下記のコード
+javac -encoding UTF-8 *.java
 
-# 実行０
+# 実行
 java Main
 ```
 ## 使い方
